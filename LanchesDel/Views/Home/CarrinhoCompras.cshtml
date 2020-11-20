@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Domain.ItemPedido>
+
+@{
+    ViewData["Title"] = "Carrinho de Compras";
+}
+
+<h2>Carrinho de Compras</h2>
+
+<table style="margin-top:30px;margin-bottom:30px;text-align:center;" class="table table-hover table-stripedS">
+    <thead>
+        <tr>
+            <th>Imagem</th>
+            <th>Produto</th>
+            <th></th>
+            <th>Quantidade</th>
+            <th></th>
+            <th>Preço</th>
+            <th>Subtotal</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                <img src="~/deliveryimagens/"
+                     alt="@item.Produto.Descricao"
+                     style="width:120px;height:100px" />
+            </td>
+            <td style="vertical-align:middle">
+                @item.Produto.Nome
+            </td>
+            <td style="vertical-align:middle">
+                <a asp-action="DiminuirQuantidade"
+                   asp-controller="Home"
+                   asp-route-id="@item.idPedido"
+                   class="btn btn-info">
+                    -
+                </a>
+            </td>
+            <td style="vertical-align:middle">
+                @item.Quantidade
+            </td>
+            <td style="vertical-align:middle">
+                <a asp-action="AumentarQuantidade"
+                   asp-controller="Home"
+                   asp-route-id="@item.idPedido"
+                   class="btn btn-info">
+                    +
+                </a>
+            </td>
+            <td style="vertical-align:middle">
+                @item.Preco.ToString("C2")
+            </td>
+            <td style="vertical-align:middle">
+                @{
+                    double subtotal = item.Preco * item.Quantidade;
+                }
+                @subtotal.ToString("C2")
+            </td>
+            <td style="vertical-align:middle">
+                <a asp-action="RemoverDoCarrinho"
+                   asp-controller="Home"
+                   asp-route-id="@item.idPedido"
+                   class="btn btn-primary">
+                    Remover
+                </a>
+            </td>
+            <td style="vertical-align:middle">
+                <a asp-action="CompreMais"
+                   asp-controller="Home"
+                   asp-route-id="@item.idPedido"
+                   class="btn btn-primary">
+                    Adicionar
+                </a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div class="card border-success mb-3" style="max-width: 20rem;">
+    <div class="card-header"><b>Total: </b> @ViewBag.TotalCarrinho.ToString("C2")</div>
+</div>

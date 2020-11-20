@@ -1,0 +1,63 @@
+﻿@model Produto
+@inject Microsoft.AspNetCore.Identity.SignInManager<UsuarioLogado> SignInManager
+@inject Microsoft.AspNetCore.Identity.UserManager<UsuarioLogado> UserManager
+
+<h2>Cadastrar Produto</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post"
+              enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly"
+                 class="text-primary"></div>
+            <div class="form-group" id="idCozinha">
+                <label>Cozinha</label>
+                <input type="text" class="form-control" value="@UserManager.GetUserName(User)" name="nomeCozinha"/>
+            </div>
+            <div class="form-group" id="Nome">
+                <label asp-for="Nome"></label>
+                <input type="text" class="form-control"
+                       asp-for="Nome" />
+                <span asp-validation-for="Nome"
+                      class="text-primary"></span>
+            </div>
+            <div class="form-group" id="Descricao">
+                <label asp-for="Descricao"></label>
+                <input type="text" class="form-control"
+                       asp-for="Descricao" />
+                <span asp-validation-for="Descricao"
+                      class="text-primary"></span>
+            </div>
+            <div class="form-group" id="Preco">
+                <label asp-for="Preco"></label>
+                <input type="text" class="form-control"
+                       asp-for="Preco" />
+                <span asp-validation-for="Preco"
+                      class="text-primary"></span>
+            </div>
+            <div class="form-group" id="Quantidade">
+                <label asp-for="Quantidade"></label>
+                <input type="text"
+                       class="form-control"
+                       asp-for="Quantidade" />
+                <span asp-validation-for="Quantidade"
+                      class="text-primary"></span>
+            </div>
+            <div class="form-group" id="Categorias">
+                <label>Categorias:</label>
+                <select asp-items="@ViewBag.Categorias"
+                        class="form-control"
+                        name="drpCategorias">
+                    <option> -- SELECIONE -- </option>
+                </select>
+            </div>
+            <div class="form-group" id="Imagem">
+                <label>Imagem:</label><br />
+                <input type="file" name="fupImagem" />
+            </div>
+            <input type="submit"
+                   class="btn btn-success"
+                   value="Cadastrar" />
+        </form>
+    </div>
+</div>

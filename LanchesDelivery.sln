@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2048
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LanchesDel", "LanchesDel\LanchesDel.csproj", "{FCFD19C1-6E9E-41AB-B83B-1840D69DB495}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{3B34C0A7-3E58-40CB-BE57-C715A07B7DA5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{4E80EE5E-249B-426F-B3EF-85E910044B48}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FCFD19C1-6E9E-41AB-B83B-1840D69DB495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCFD19C1-6E9E-41AB-B83B-1840D69DB495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCFD19C1-6E9E-41AB-B83B-1840D69DB495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCFD19C1-6E9E-41AB-B83B-1840D69DB495}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B34C0A7-3E58-40CB-BE57-C715A07B7DA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B34C0A7-3E58-40CB-BE57-C715A07B7DA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B34C0A7-3E58-40CB-BE57-C715A07B7DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B34C0A7-3E58-40CB-BE57-C715A07B7DA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E80EE5E-249B-426F-B3EF-85E910044B48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E80EE5E-249B-426F-B3EF-85E910044B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E80EE5E-249B-426F-B3EF-85E910044B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E80EE5E-249B-426F-B3EF-85E910044B48}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6FB61960-0D4F-4EEF-963E-D0140905AB56}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,36 @@
+﻿@model List<Cozinha>
+
+@{
+    int semCozinha = 0;
+}
+
+<div class="row" id="Produtos">
+    @foreach (Cozinha item in Model)
+    {
+        semCozinha++;
+
+        <div class="col-md-3" style="text-align:center; margin-bottom:15px">
+            <a asp-action="Cardapio" asp-controller="Cozinha" asp-route-id="@item.idCozinha">
+                <img src="~/deliveryimagens/@item.Imagem" alt="@item.Descricao"
+                     style="width:200px;height:180px" class="img-thumbnail" /><br />
+            </a>
+            <a asp-action="Cardapio" asp-controller="Cozinha" asp-route-id="@item.idCozinha">
+                @item.Nome
+            </a><br />
+            @if (item.Avaliacao == null)
+            {
+                <b>Avaliação: </b> <span>-</span> <br />
+            }
+            else
+            {
+                <b>Avaliação: </b> @item.Avaliacao<br />
+            }
+
+        </div>
+
+    }
+    @if (semCozinha == 0)
+    {
+        <h1 style="margin:auto">Nenhuma cozinha cadastrada x.x</h1>
+    }
+</div>

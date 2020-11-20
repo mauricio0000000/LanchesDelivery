@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Domain.Usuario>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Gerenciamento dos Usuários</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-info">Cadastrar usuário</a>
+</p>
+<table class="table table-hover table-striped"
+       style="margin-top:15px;margin-bottom:15px">
+    <thead>
+        <tr>
+            <th>
+                Nome
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Data de Cadastro
+            </th>
+            <th>
+                Opções
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CriadoEm)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Nome" class="btn btn-primary">Alterar</a>
+                    <a asp-action="Delete" asp-route-id="@item.Nome" class="btn btn-danger">Remover</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

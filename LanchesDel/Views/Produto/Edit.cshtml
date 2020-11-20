@@ -1,0 +1,36 @@
+﻿@model Produto
+<form asp-action="Edit" method="post">
+    <fieldset>
+        <legend>Alterar Produto</legend>
+        <div class="form-group">
+            <label>Id:</label>
+            <input class="form-control"
+                   type="text" readonly=""
+                   asp-for="idProduto" />
+            <input type="hidden"
+                   asp-for="idProduto" />
+        </div>
+        <div class="form-group">
+            <label>Nome:</label>
+            <input type="text" class="form-control"
+                   asp-for="Nome" />
+        </div>
+        <div class="form-group">
+            <label>Descrição:</label>
+            <input type="text" class="form-control"
+                   asp-for="Descricao" />
+        </div>
+        <div class="form-group">
+            <label>Preço:</label>
+            <input type="text" class="form-control"
+                   asp-for="Preco" />
+        </div>
+        <div class="form-group">
+            <label>Quantidade:</label>
+            <input type="text" class="form-control"
+                   asp-for="Quantidade" />
+        </div>
+        <input type="submit" class="btn btn-success" value="Salvar" />
+        <a asp-action="Delete" asp-route-id="nome" class="btn btn-danger">Excluir</a>
+    </fieldset>
+</form>

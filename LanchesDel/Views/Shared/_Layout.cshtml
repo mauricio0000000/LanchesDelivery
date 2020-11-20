@@ -1,0 +1,195 @@
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<UsuarioLogado> SignInManager
+@inject Microsoft.AspNetCore.Identity.UserManager<UsuarioLogado> UserManager
+
+@{
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    @* Barra de navegação *@
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+        <a asp-action="Index" asp-controller="Home" class="navbar-brand" asp-route-id="">Lanches Delivery</a>
+        <ul class="navbar-nav ml-auto">
+            @if (SignInManager.IsSignedIn(User))
+            {
+                var user = await UserManager.FindByNameAsync(UserManager.GetUserName(User));
+
+                if (user.nivelAcesso == 0)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           asp-action="Edit"
+                           asp-route-id="@UserManager.GetUserName(User)"
+                           asp-controller="Cozinha">
+                            @UserManager.GetUserName(User)
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Cadastrar
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item"
+                               asp-action="Create"
+                               asp-controller="Produto">
+                                Produto
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           asp-action="Logout"
+                           asp-controller="Usuario">
+                            Logout
+                        </a>
+                    </li>
+                }
+                else if (user.nivelAcesso == 1)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           asp-action="Edit"
+                           asp-route-id="@UserManager.GetUserName(User)"
+                           asp-controller="Usuario">
+                            @UserManager.GetUserName(User)
+
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           asp-action="Logout"
+                           asp-controller="Usuario">
+                            Logout
+                        </a>
+                    </li>
+                }
+                else if (user.nivelAcesso == 2)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           asp-action="Edit"
+                           asp-route-id="@UserManager.GetUserName(User)"
+                           asp-controller="Usuario">
+                            @UserManager.GetUserName(User)
+
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Gerenciar
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item"
+                               asp-action="Index"
+                               asp-controller="Cozinha">
+                                Cozinha
+                            </a>
+                            <a class="dropdown-item"
+                               asp-action="Index"
+                               asp-controller="Usuario">
+                                Freguês
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item"
+                               asp-action="Index"
+                               asp-controller="Produto">
+                                Produto
+                            </a>
+                            <a class="dropdown-item"
+                               asp-action="Index"
+                               asp-controller="Categoria">
+                                Categoria
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Cadastrar
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item"
+                               asp-action="Create"
+                               asp-controller="Cozinha">
+                                Cozinha
+                            </a>
+                            <a class="dropdown-item"
+                               asp-action="Create"
+                               asp-controller="Usuario">
+                                Freguês
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item"
+                               asp-action="Create"
+                               asp-controller="Produto">
+                                Produto
+                            </a>
+                            <a class="dropdown-item"
+                               asp-action="Create"
+                               asp-controller="Categoria">
+                                Categoria
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           asp-action="Logout"
+                           asp-controller="Usuario">
+                            Logout
+                        </a>
+                    </li>
+                }
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link"
+                       asp-action="Login"
+                       asp-controller="Usuario">
+                        Login
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Cadastrar
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item"
+                           asp-action="Create"
+                           asp-controller="Cozinha">
+                            Cozinha
+                        </a>
+                        <a class="dropdown-item"
+                           asp-action="Create"
+                           asp-controller="Usuario">
+                            Freguês
+                        </a>
+                    </div>
+                </li>
+            }
+        </ul>
+    </nav>
+    @* Conteúdo *@
+    <div class="m-5">
+        @RenderBody()
+    </div>
+    @* Rodapé *@
+    <footer>
+        <hr />
+        <p style="text-align:center">
+            &copy; @DateTime.Now.Year -
+            Desenvolvido por Pedro Gabriel Cavalheiro e Joice Ribeiro
+        </p>
+    </footer>
+</body>
+</html>

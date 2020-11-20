@@ -1,0 +1,56 @@
+﻿@model Domain.Cozinha
+
+
+
+<div style="border-style:solid;border-width:1px;border-color:lightgray;height:280px;margin-left:140px;margin-right:140px">
+    <div style="position:absolute">
+        <img src="~/deliveryimagens/@Html.DisplayFor(model => model.Imagem)" alt="@Html.DisplayFor(model => model.Imagem)"
+             style="width:400px;height:278px" />
+    </div>
+    <div style="position:relative;margin-left:416px">
+        <h3>@Html.DisplayFor(model => model.Nome)</h3>
+        <hr style="margin-left:-16px" />
+        <p>@Html.DisplayFor(model => model.Descricao)</p>
+        <div style="position:relative;margin-left:990px;margin-top:130px">
+            <p>Avaliação: @Html.DisplayFor(model => model.Avaliacao)</p>
+        </div>
+    </div>
+
+</div>
+
+<hr style="width:10000px;margin-left:-70px" />
+
+<div class="row" id="Produtos">
+    @foreach (Categoria categoria in ViewBag.Categorias)
+    {
+        int primeiraLinha = 0;
+        @foreach (Produto item in ViewBag.Produtos)
+        {
+            if (item.Categoria.Nome == categoria.Nome)
+            {
+                if (primeiraLinha == 0)
+                {
+                    <h2 style="width:100%;height:50px;margin-left:140px">@categoria.Nome</h2>
+                }
+                primeiraLinha++;
+                <div class="col-md-3" style="text-align:center; margin-bottom:15px">
+                    <a asp-action="Detalhes" asp-controller="Home" asp-route-id="@item.idProduto">
+                        <img src="~/deliveryimagens/@item.Imagem" alt="@item.Descricao"
+                             style="width:200px;height:180px" class="img-thumbnail" /><br />
+                    </a>
+                    <a asp-action="Detalhes" asp-controller="Home" asp-route-id="@item.idProduto">
+                        @item.Nome
+                    </a><br />
+                    <b>Preço: </b> R$ @item.Preco <br />
+                    <a asp-action="AdicionarAoCarrinho"
+                       asp-controller="Home"
+                       asp-route-id="@item.idProduto"
+                       class="btn btn-success">
+                        Adicionar
+                    </a>
+                </div>
+            }
+        }
+    }
+
+</div>

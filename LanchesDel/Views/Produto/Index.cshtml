@@ -1,0 +1,47 @@
+﻿@model List<Produto>
+
+<h2>Gerenciamento dos Produtos</h2>
+<a asp-action="Create" class="btn btn-info">Cadastrar Produto</a>
+<table class="table table-hover table-striped"
+       style="margin-top:15px;margin-bottom:15px">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+            <th>Imagem</th>
+            <th>Data de Cadastro</th>
+            <th>Opções</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Produto item in Model)
+        {
+            <tr>
+                <td>@item.Nome</td>
+                <td>@item.Descricao</td>
+                <td>@item.Preco.ToString("C2")</td>
+                <td>@item.Quantidade</td>
+                <td>
+                    <img src="~/ecommerceimagens/@item.Imagem"
+                         alt="@item.Descricao"
+                         style="width:150px;height:120px" />
+                </td>
+                <td>@item.CriadoEm</td>
+                <td>
+                    <a asp-action="Edit"
+                       asp-route-id="@item.idProduto"
+                       class="btn btn-primary">
+                        Alterar
+                    </a>
+                    <a asp-action="Delete"
+                       asp-route-id="@item.idProduto"
+                       class="btn btn-danger">
+                        Remover
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
